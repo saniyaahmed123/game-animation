@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background: url(assets/animated-gifs-of-fighting-game-backgrounds-44.webp) no-repeat center center / cover;
+    /* no-repeat → prevents tiling
+         center center → centers the GIF
+         cover → makes it cover the whole screen */
+}
+
+#ch1 {
+    position: absolute !important;
+    top: 62% ;
+    left: 25% ;
+    width: 200px !important;
+;
+
+}
+
+#ch2 {
+    position: absolute;
+
+    right: 25%;
+}
+
+#ch1,
+#ch2 {
+    position: absolute;
+    /* Allows manual X and Y movement */
+    bottom: 20px;
+    /* Keeps them on the floor */
+}
+
+/* The Jump Animation */
+.jump-anim {
+    animation: jump-move 0.6s;
+}
+
+@keyframes jump-move {
+    0% {
+        bottom: 20px;
+    }
+
+    /* Start on floor */
+    50% {
+        bottom: 150px;
+    }
+
+    /* Peak of jump */
+    100% {
+        bottom: 20px;
+    }
+
+    /* Land on floor */
+}
