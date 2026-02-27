@@ -1,112 +1,141 @@
-function showInstructions() {
+window.onload = function() {
     Swal.fire({
-        title: 'BATTLE CONTROLS', // Main Heading
+        title: '<i class="fas fa-gamepad"></i> BATTLE RULES',
         html: `
-            <div style="text-align: left; font-family: sans-serif;">
-                <p style="color: #d33; font-weight: bold;">PLAYER 1 (LEFT):</p>
-                <ul>
-                    <li><strong>Arrows:</strong> Move Left/Right</li>
-                    <li><strong>Up Arrow:</strong> Jump</li>
-                </ul>
-                <hr>
-                <p style="color: #3085d6; font-weight: bold;">PLAYER 2 (RIGHT):</p>
-                <ul>
-                    <li><strong>A / D Keys:</strong> Move Left/Right</li>
-                    <li><strong>K Key:</strong> Kick Attack</li>
-                </ul>
+            <div style="display: flex; justify-content: space-around; align-items: flex-start; padding: 20px 0; border-top: 1px solid #444;">
+                <div style="flex: 1;">
+                    <h3 style="color: #00d2ff; margin-bottom: 15px;">PLAYER 1</h3>
+                    <div style="line-height: 2; font-size: 1.1em;">
+                        <div><i class="fas fa-arrow-left"></i> <i class="fas fa-arrow-right"></i> Move</div>
+                        <div><kbd style="background:#333; padding: 2px 6px; border-radius: 4px;">P</kbd> Punch</div>
+                        <div><kbd style="background:#333; padding: 2px 6px; border-radius: 4px;">K</kbd> Kick</div>
+                    </div>
+                </div>
+
+                <div style="width: 1px; background: #444; height: 100px; align-self: center;"></div>
+
+                <div style="flex: 1;">
+                    <h3 style="color: #ff4757; margin-bottom: 15px;">PLAYER 2</h3>
+                    <div style="line-height: 2; font-size: 1.1em;">
+                        <div><kbd style="background:#333; padding: 2px 6px; border-radius: 4px;">A</kbd> <kbd style="background:#333; padding: 2px 6px; border-radius: 4px;">D</kbd> Move</div>
+                        <div><kbd style="background:#333; padding: 2px 6px; border-radius: 4px;">F</kbd> Attack</div>
+                        <div><kbd style="background:#333; padding: 2px 6px; border-radius: 4px;">J</kbd> Jump</div>
+                    </div>
+                </div>
             </div>
         `,
-        icon: 'warning', 
-        confirmButtonText: 'START FIGHT',
-        confirmButtonColor: '#000',
-        background: '#f4f4f4',
-        
-        // --- FIXES FOR THE BACKGROUND VIDEO ---
-        heightAuto: false,
-        scrollbarPadding: false
+        background: 'rgba(20, 20, 20, 0.95)',
+        color: '#fff',
+        confirmButtonText: 'FIGHT!',
+        confirmButtonColor: '#ff4757',
+        width: '600px',
+        padding: '2em',
+        backdrop: `rgba(0,0,0,0.8)`,
+        showClass: { popup: 'animate__animated animate__zoomIn' }
     });
-}
+};
+var ch1 = document.getElementById('ch1')
+var ch2 = document.getElementById('ch2')
+var ch1left = 10;
 
-// Call the function to show it
-showInstructions();
-var ch1 = document.getElementById("ch1");
-var ch2 = document.getElementById("ch2");
-let ch1Left = 25;
-let ch2Right = 25;
+var ch2right = 10;
 
-function handleKeyDown(event) {
-    switch (event.key) {
-        case 'ArrowLeft':
-            ch1Left -= 5;
-            ch1.style.left = ch1Left + '%';
-            break;
-        case 'ArrowRight':
-            ch1Left += 10;
-            ch1.style.left = ch1Left + '%';
-            break;
-        case 'ArrowUp':
-            ch1.style.top = '40%';
-
-            ch1.style.width = 250 + 'px';
-
-            ch1.src = 'assets/ch1jump.gif';
-
-            ch1.style.position = 'absolute';
-            ch1Left -= 3;
-            ch1.style.left = ch1Left + '%';
+window.addEventListener('keydown', function (e) {
+    if (e.key == 'ArrowRight' && ch1left < 1400) {
+        ch1.src = 'assets/ch1walk.gif'
+        ch1left += 15;
+        ch1.style.left = ch1left + 'px';
+    }
+    if (e.key == 'ArrowLeft' && ch1left > 0) {
+        ch1.src = 'assets/ch1walk.gif'
+        ch1left -= 15;
+        ch1.style.left = ch1left + 'px';
+    }
+    if (e.key == 'k' && ch1left < 1300) {
+        ch1.src = 'assets/ch1kick.gif';
+        ch1.style.width = '280px';
+        setTimeout(function () {
+            ch1.src = 'assets/ch1.gif';
 
 
 
+            ch1.style.width = 130 + 'px';
 
-
-            ch1.style.width = 250 + 'px';
-            setTimeout(function () {
-                ch1.src = 'assets/ch1.gif';
-                ch1.style.top = '60%';
-                ch1Left += 3;
-                ch1.style.left = ch1Left + '%';
-
-                ch1.style.width = 200 + 'px';
-
-            }, 1600);
-            break;
+        }, 1000);
 
 
 
+    }
+    if (e.key == 'p' && ch1left < 1300) {
+        ch1.src = 'assets/ch1punch.gif';
+        ch1.style.width = 190 + 'px';
+        setTimeout(function () {
+            ch1.src = 'assets/ch1.gif';
 
 
 
+            ch1.style.width = 130 + 'px';
 
-        case 'a':
-            ch2Right -= 5;
-            ch2.style.right = ch2Right + '%';
-            break;
-        case 'd':
-            ch2Right += 5;
-            ch2.style.right = ch2Right + '%';
-            break;
-        case 'k':
-
-
-
-            ch2.style.width = 250 + 'px';
-            ch2.src = 'assets/ch2kick.gif';
-
-
-            setTimeout(function () {
-                ch2.src = 'assets/ch2.gif';
-
-
-
-                ch2.style.width = 150 + 'px';
-
-            }, 1600);
-            break;
-
-
+        }, 1100);
 
 
 
 
     }
-}
+    if (e.key == 'd' && ch2right < 1400) {
+        ch2.style.width = 140 + 'px';
+
+        ch2.src = 'assets/ch2walk.gif'
+        ch2right += 15;
+        ch2.style.right = ch2right + 'px';
+    }
+    if (e.key == 'a' && ch2right > 7) {
+        ch2.style.width = 140 + 'px';
+
+        ch2.src = 'assets/ch2walk.gif'
+        ch2right -= 15;
+        ch2.style.right = ch2right + 'px';
+    }
+    if (e.key == 'j' && ch2right < 1300) {
+        ch2.src = 'assets/ch2jump.gif';
+        ch2.style.width = '200px';
+        setTimeout(function () {
+            ch2.src = 'assets/ch2.gif';
+
+
+
+            ch2.style.width = 180 + 'px';
+
+        }, 2000);
+
+
+
+    }
+    if (e.key == 'f' && ch2right < 1300) {
+        ch2.src = 'assets/ch2punch.gif';
+        ch2.style.width = 220 + 'px';
+        setTimeout(function () {
+            ch2.src = 'assets/ch2.gif';
+
+
+
+            ch2.style.width = 180 + 'px';
+
+        }, 1100);
+
+    }
+})
+
+
+window.addEventListener('keyup', function (e) {
+    if (e.key == 'ArrowRight' || e.key == 'ArrowLeft') {
+        ch1.src = 'assets/ch1.gif'; // Changed from ch2 to ch1
+        ch1.style.width = '130px';
+    }
+})
+window.addEventListener('keyup', function (e) {
+    if (e.key == 'a' || e.key == 'd') {
+        ch2.src = 'assets/ch2.gif'
+        ch2.style.width = 180 + 'px';
+    }
+})

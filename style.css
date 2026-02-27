@@ -1,59 +1,29 @@
-body {
+* {
     margin: 0;
-    height: 100vh;
-    background: url(assets/animated-gifs-of-fighting-game-backgrounds-44.webp) no-repeat center center / cover;
-    /* no-repeat → prevents tiling
-         center center → centers the GIF
-         cover → makes it cover the whole screen */
+    padding: 0;
+    box-sizing: border-box;
 }
-
-#ch1 {
-    position: absolute !important;
-    top: 62% ;
-    left: 25% ;
-    width: 200px ;
-
-
-}
-
-#ch2 {
+body{
+    background-image: url('assets/animated-gifs-of-fighting-game-backgrounds-44.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* This kills the horizontal scrollbar */
+    overflow-y: hidden; /* Optional: kills vertical scrollbar too */
+    height: 100vh;      /* Makes sure the body takes up the full screen height */
+    width: 100vw;       /* Makes sure the body takes up the full screen width */
+}.char{
     position: absolute;
-    top: 62%;
-    width: 150px;
-    right: 25%;
+    bottom: 5%;
+  
 }
-
-#ch1,
-#ch2 {
-    position: absolute;
-    /* Allows manual X and Y movement */
-    bottom: 20px;
-    /* Keeps them on the floor */
+#ch1{
+    width: 130px;
+    left: 100px;
 }
-
-/* The Jump Animation */
-.jump-anim {
-    animation: jump-move 0.6s;
-}
-
-@keyframes jump-move {
-    0% {
-        bottom: 20px;
-    }
-
-    /* Start on floor */
-    50% {
-        bottom: 150px;
-    }
-
-    /* Peak of jump */
-    100% {
-        bottom: 20px;
-    }
-
-    /* Land on floor */
-}
-#ch2 {
-   
-    transform: scaleX(-1); 
+#ch2{
+    width: 180px;
+    transform: scaleX(-1);
+    right: 100px;
 }
